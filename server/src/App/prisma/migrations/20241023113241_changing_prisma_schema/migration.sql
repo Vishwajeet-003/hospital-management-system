@@ -47,7 +47,7 @@ ALTER TABLE "PatientMedication" ALTER COLUMN "doctor_id" SET DATA TYPE INTEGER;
 
 -- AlterTable
 ALTER TABLE "Staff" DROP CONSTRAINT "Staff_pkey",
-ALTER COLUMN "Staff_id" SET DATA TYPE SERIAL,
+ALTER COLUMN "Staff_id" SET DATA TYPE INTEGER,
 ADD CONSTRAINT "Staff_pkey" PRIMARY KEY ("Staff_id");
 
 -- AlterTable
