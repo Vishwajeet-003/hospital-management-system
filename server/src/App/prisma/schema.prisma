@@ -158,7 +158,7 @@ model MainLabReports {
 model LabReports {
   id                BigInt              @id @default(autoincrement())
   patient_id        BigInt?
-  doctor_id         BigInt?
+  doctor_id         Int?
   MainLabReports_id BigInt
   test_name         String?             @db.VarChar(255)
   test_date         DateTime?           @db.Date
@@ -202,7 +202,7 @@ model MainMedicalReports {
 }
 model MedicalReports {
   report_id          BigInt          @id @default(autoincrement())
-  doctor_id          BigInt?
+  doctor_id          Int?
   MainReports_id  BigInt?
   report_type        String?         @db.VarChar(255)
   report_description String?
@@ -237,7 +237,7 @@ model MainMedication {
   PatientMedication_id BigInt
   SurgeryRecords_id BigInt?
   treatment_type  String      @db.VarChar(10) 
-  doctor_id       BigInt?
+  doctor_id       Int?
   type            String           @default("OPD") @db.VarChar(255)
   description    String?     @db.VarChar(255)
   test_file       String?
@@ -257,7 +257,7 @@ model PatientMedication {
   ODPtreatment_id  BigInt? @unique
   IPDtreatment_id  BigInt? @unique
   ANCtreatment_id  BigInt?   @unique
-  doctor_id       BigInt?
+  doctor_id       Int?
   type            String           @default("OPD") @db.VarChar(255)
   description    String?     @db.VarChar(255)
   start_date     DateTime?   @db.Date
@@ -271,7 +271,7 @@ model OPDTreatments {
   id               BigInt            @id @default(autoincrement())
   appointment_id   BigInt?
   patient_id       BigInt?
-  doctor_id        BigInt?
+  doctor_id        Int?
   diagnosis        String?
   treatment_plan   String?
   report_file      String?
@@ -354,7 +354,7 @@ model SurgeryRecords {
   patient_id               BigInt?
   treatment_id             BigInt
   ipd_admission_id         BigInt
-  doctor_id                BigInt
+  doctor_id                Int
   surgery_type             String        @db.VarChar(255)
   surgery_date             DateTime      @db.Date
   start_time               DateTime      @db.Time(0)
@@ -469,7 +469,7 @@ model medication_list {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model notes {
   id            BigInt        @id @default(autoincrement())
-  user_id       BigInt
+  user_id       Int
   type          String        @default("doctor") @db.VarChar(255)
   notes         String
   treatment_id  BigInt
