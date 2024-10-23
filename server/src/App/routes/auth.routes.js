@@ -1,15 +1,9 @@
-// src/App/controller/auth.js
-import prisma from '../prisma/index.js';
-import bcrypt from 'bcryptjs';
-import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../utils/jwt.js';
-
 import express from 'express';
+import { login, refreshToken } from '../controller/staff/auth.js';
 
 const AuthRoutes = express.Router();
 
-// Define the route
-AuthRoutes.get('/login');
+AuthRoutes.post('/login', login);
+AuthRoutes.post('/refresh-token', refreshToken);
 
 export default AuthRoutes;
-
-

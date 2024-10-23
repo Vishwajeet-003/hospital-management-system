@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
+
 
 const prisma = new PrismaClient();
 
@@ -7,12 +9,13 @@ export const createStaff = async (req, res) => {
   const { full_name, specialization, user, password, type, contact_number, email, qualifications, department } = req.body;
 
   try {
+    const hashPassword = await bcrypt.hash(password, 10);
     const newStaff = await prisma.staff.create({
       data: {
         full_name,
         specialization,
         user,
-        password,
+        password : hashPassword,
         type,
         contact_number,
         email,
